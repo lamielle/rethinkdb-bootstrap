@@ -43,5 +43,8 @@ etcdctl --peers $bridge_ip:4001 set /rethinkdb.com/bootstrap/machines/$HOSTNAME 
 
 echo "Writing environment.rethinkdb"
 cat > /etc/env.d/environment.rethinkdb <<EOF
+RETHINKDB_PORTS="-p $private_ip:28015:28015 \
+-p $private_ip:29015:29015 \
+-p $private_ip:8080:8080"
 RETHINKDB_JOIN="${joins}"
 EOF
